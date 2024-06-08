@@ -235,6 +235,7 @@ func FuzzParseQOSReserve(f *testing.F) {
 // that targets:
 // - cpuset.Parse
 // - cpuset/(CPUSet).String
+/*
 func FuzzParseCPUSet(f *testing.F) {
 	f.Fuzz(func(t *testing.T, data string) {
 		cs, err := cpuset.Parse(data)
@@ -244,6 +245,7 @@ func FuzzParseCPUSet(f *testing.F) {
 		_ = cs.String()
 	})
 }
+*/
 
 // FuzzParseImageName implements a fuzzer
 // that targets parsers.ParseImageName

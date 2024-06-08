@@ -99,15 +99,13 @@ printf "package main\nimport ( \n _ \"github.com/AdamKorcz/go-118-fuzz-build/tes
 cat register.go
 
 go mod tidy
-# go mod vendor
-go work vendor
+GOWORK=off go mod vendor
 
 # Delete broken fuzzer in 3rd-party dependency.
-# find $SRC/kubernetes/vendor/github.com/cilium/ebpf/internal/btf -name "fuzz.go" -exec rm -rf {} \;
+find $SRC/kubernetes/vendor/github.com/cilium/ebpf/btf -name "fuzz.go" -exec rm -rf {} \;
 
 # Build the fuzzers
-# TODO: psaggu, disabling this fuzzer to test where 
-# compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzParseQuantity fuzz_parse_quantity
+compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzParseQuantity fuzz_parse_quantity
 compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzMeta1ParseToLabelSelector fuzz_meta1_parse_to_label_selector
 compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzParseSelector fuzz_parse_selector
 compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzLabelsParse fuzz_labels_parse
@@ -143,7 +141,7 @@ go mod tidy && go work vendor
 
 
 # Delete broken fuzzer from a 3rd-party dependency
-# find $SRC/kubernetes/vendor/github.com/cilium/ebpf/internal/btf -name "fuzz.go" -exec rm -rf {} \;
+find $SRC/kubernetes/vendor/github.com/cilium/ebpf/btf -name "fuzz.go" -exec rm -rf {} \;
 
 #if [ "$SANITIZER" != "coverage" ]; then
    #compile_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzApiMarshaling fuzz_api_marshaling

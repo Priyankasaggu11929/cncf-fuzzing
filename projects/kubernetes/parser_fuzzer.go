@@ -31,7 +31,7 @@ import (
 	"k8s.io/kubectl/pkg/util/certificate"
 	kubeadmutil "k8s.io/kubernetes/cmd/kubeadm/app/util"
 	"k8s.io/kubernetes/pkg/credentialprovider"
-	// "k8s.io/kubernetes/pkg/kubelet/cm" 
+	"k8s.io/kubernetes/pkg/kubelet/cm"
 	"k8s.io/utils/cpuset"
 	"k8s.io/kubernetes/pkg/util/parsers"
 )
@@ -202,6 +202,7 @@ func FuzzParseQOSReserve(data []byte) int {
 // that targets:
 // - cpuset.Parse
 // - cpuset/(CPUSet).String
+/*
 func FuzzParseCPUSet(data []byte) int {
 	cs, err := cpuset.Parse(string(data))
 	if err != nil {
@@ -210,6 +211,7 @@ func FuzzParseCPUSet(data []byte) int {
 	_ = cs.String()
 	return 1
 }
+*/
 
 // FuzzParseImageName implements a fuzzer
 // that targets parsers.ParseImageName
