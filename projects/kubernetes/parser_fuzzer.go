@@ -43,6 +43,7 @@ func FuzzParseQuantity(data []byte) int {
 	return 1
 }
 
+
 // FuzzMeta1ParseToLabelSelector implements a fuzzer
 // that targets metav1.ParseToLabelSelector
 func FuzzMeta1ParseToLabelSelector(data []byte) int {
@@ -202,7 +203,6 @@ func FuzzParseQOSReserve(data []byte) int {
 // that targets:
 // - cpuset.Parse
 // - cpuset/(CPUSet).String
-/*
 func FuzzParseCPUSet(data []byte) int {
 	cs, err := cpuset.Parse(string(data))
 	if err != nil {
@@ -211,7 +211,6 @@ func FuzzParseCPUSet(data []byte) int {
 	_ = cs.String()
 	return 1
 }
-*/
 
 // FuzzParseImageName implements a fuzzer
 // that targets parsers.ParseImageName

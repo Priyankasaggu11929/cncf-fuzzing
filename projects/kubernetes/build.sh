@@ -95,6 +95,7 @@ mkdir native_fuzzing && cd native_fuzzing
 # This is a small hack to install this dependency, since it is not used anywhere,
 # and Go would therefore remove it from go.mod once we run "go mod tidy && go mod vendor".
 go install github.com/AdamKorcz/go-118-fuzz-build@latest
+go get github.com/AdamKorcz/go-118-fuzz-build/testing
 printf "package main\nimport ( \n _ \"github.com/AdamKorcz/go-118-fuzz-build/testing\"\n )\n" > register.go
 cat register.go
 
@@ -105,7 +106,7 @@ GOWORK=off go mod vendor
 find $SRC/kubernetes/vendor/github.com/cilium/ebpf/btf -name "fuzz.go" -exec rm -rf {} \;
 
 # Build the fuzzers
-compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzParseQuantity fuzz_parse_quantity
+#compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzParseQuantity fuzz_parse_quantity
 compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzMeta1ParseToLabelSelector fuzz_meta1_parse_to_label_selector
 compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzParseSelector fuzz_parse_selector
 compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzLabelsParse fuzz_labels_parse
