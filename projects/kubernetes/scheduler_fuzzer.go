@@ -16,8 +16,8 @@
 package fuzzing
 
 import (
-	"k8s.io/kube-scheduler/config/v1beta2"
-	config "k8s.io/kubernetes/pkg/scheduler/apis/config/v1beta2"
+	"k8s.io/kube-scheduler/config/v1"
+	config "k8s.io/kubernetes/pkg/scheduler/apis/config/v1"
 
 	fuzz "github.com/AdaLogics/go-fuzz-headers"
 )
