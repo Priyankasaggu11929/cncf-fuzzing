@@ -106,7 +106,7 @@ GOWORK=off go mod vendor
 find $SRC/kubernetes/vendor/github.com/cilium/ebpf/btf -name "fuzz.go" -exec rm -rf {} \;
 
 # Build the fuzzers
-#compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzParseQuantity fuzz_parse_quantity
+compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzParseQuantity fuzz_parse_quantity
 compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzMeta1ParseToLabelSelector fuzz_meta1_parse_to_label_selector
 compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzParseSelector fuzz_parse_selector
 compile_native_go_fuzzer k8s.io/kubernetes/test/fuzz/fuzzing FuzzLabelsParse fuzz_labels_parse
@@ -138,7 +138,8 @@ rm native_go_parser_fuzzers_test.go
 # disable this fuzzer for now
 #compile_go_fuzzer k8s.io/kubernetes/pkg/kubelet/server FuzzRequest fuzz_request
 
-go mod tidy && go work vendor
+go mod tidy
+GOWORK=off go mod vendor
 
 
 # Delete broken fuzzer from a 3rd-party dependency
