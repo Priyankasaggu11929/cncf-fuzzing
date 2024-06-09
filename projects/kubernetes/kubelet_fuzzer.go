@@ -26,14 +26,9 @@ import (
 	"k8s.io/api/core/v1"
 	runtimeapi "k8s.io/cri-api/pkg/apis/runtime/v1"
 	apitesting "k8s.io/cri-api/pkg/apis/testing"
-	"k8s.io/kubernetes/pkg/kubelet/kubeletconfig/checkpoint"
 	"k8s.io/kubernetes/pkg/kubelet/kuberuntime/logs"
 )
 
-func FuzzDecodeRemoteConfigSource(data []byte) int {
-	_, _ = checkpoint.DecodeRemoteConfigSource(data)
-	return 1
-}
 
 func FuzzReadLogs(data []byte) int {
 	f := fuzz.NewConsumer(data)

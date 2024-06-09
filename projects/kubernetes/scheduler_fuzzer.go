@@ -23,7 +23,7 @@ import (
 )
 
 func FuzzSetDefaults_KubeSchedulerConfiguration(data []byte) int {
-	c := &v1beta2.KubeSchedulerConfiguration{}
+	c := &v1.KubeSchedulerConfiguration{}
 	f := fuzz.NewConsumer(data)
 	err := f.GenerateStruct(c)
 	if err != nil {
